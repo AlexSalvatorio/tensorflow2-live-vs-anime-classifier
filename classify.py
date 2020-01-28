@@ -1,6 +1,7 @@
 """
-Tensorflow script from this tutorial:
+Tensorflow script from this tutorial, from Fabian Bosler:
 https://towardsdatascience.com/cat-dog-or-elon-musk-145658489730
+I will try to play with it, add more feature and use it for my custom classfyer, classifying live action TV shows VS animes.
 """
 import tensorflow as tf
 import PIL
