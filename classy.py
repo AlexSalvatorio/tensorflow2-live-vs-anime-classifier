@@ -81,7 +81,6 @@ model.compile(
 
 from tensorflow.keras.applications import mobilenet as _mobilenet
 
-
 datagen = tf.keras.preprocessing.image.ImageDataGenerator(
     preprocessing_function=_mobilenet.preprocess_input,
     shear_range=0.2,
@@ -109,6 +108,10 @@ validation = datagen.flow_from_directory(
 #from keras_tqdm import TQDMNotebookCallback
 batch_size = 32
 
+#########################
+# Launch Training
+#########################
+
 #Set the Tensorboard
 tensorboard_callback = tf.keras.callbacks.TensorBoard(logs_base_dir, histogram_freq=1)
 print('Launch the model trainning!')
@@ -120,3 +123,22 @@ history = model.fit_generator(
     validation_data=validation,
     validation_steps=validation.samples // batch_size
 )
+
+#########################
+# Test the Result
+# (Stuff to change)
+#########################
+
+elon_with_disguise = load_image('elon_with_disguise.png')
+elon_without_disguise = load_image('elon_no_disguise.jpg')
+random_cat = random.choice(os.listdir('images/cat/'))
+cat_path = os.path.join('images/cat',random_cat)
+cat = load_image(cat_path)
+random_dog = random.choice(os.listdir('images/dog/'))
+dog_path = os.path.join('images/dog',random_dog)
+dog = load_image(dog_path)
+
+tf.keras.preprocessing.image.load_img('elon_with_disguise.png', target_size=(224,224))
+tf.keras.preprocessing.image.load_img('elon_no_disguise.jpg', target_size=(224,224))
+tf.keras.preprocessing.image.load_img(cat_path, target_size=(224,224))
+tf.keras.preprocessing.image.load_img(dog_path, target_size=(224,224))
